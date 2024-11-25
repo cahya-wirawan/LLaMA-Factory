@@ -1,0 +1,1 @@
+docker run --gpus all -it --rm -v /tmp/lf/hf_cache:/home/llm-apps/.cache/huggingface -v /tmp/lf/ms_cache:/home/llm-apps/.cache/modelscope -v /tmp/lf/om_cache:/home/llm-apps/.cache/openmind -v /tmp/lf/data:/app/data -v /tmp/lf/output:/app/output -p7960:7860 llamafactory
