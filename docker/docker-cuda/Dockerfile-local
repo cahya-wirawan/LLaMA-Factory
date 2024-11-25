@@ -37,14 +37,14 @@ COPY requirements.txt /app
 RUN python -m venv $APP_DIR/.venv && . $APP_DIR/.venv/bin/activate && \
     pip config set global.index-url "$PIP_INDEX" && \
     pip config set global.extra-index-url "$PIP_INDEX" && \
-    python -m pip install --upgrade pip && \
-    python -m pip install -r requirements.txt
+    python -m pip install --no-cache-dir --upgrade pip && \
+    python -m pip install --no-cache-dir -r requirements.txt -i https://download.pytorch.org/whl/cu118
 
 # Copy the rest of the application into the image
 
 # Install the LLaMA Factory
 RUN python -m venv $APP_DIR/.venv && . $APP_DIR/.venv/bin/activate && \
-    pip install -e "."
+    pip install --no-cache-dir -i https://download.pytorch.org/whl/cu118 -e "."
 
 # Rebuild flash attention
 RUN python -m venv $APP_DIR/.venv && . $APP_DIR/.venv/bin/activate && \
